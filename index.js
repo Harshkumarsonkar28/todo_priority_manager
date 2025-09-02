@@ -7,7 +7,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb://127.0.0.1:27017/todo')
+mongoose.connect('mongodb+srv://harshkumarsonkar55940_db_user:DWTWhvypEpKDwU2H@cluster0.zmsoirj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 const taskschema = new mongoose.Schema({
     task:String,
     priority:String
