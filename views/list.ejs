@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link  rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+<body>
+
+    <%- include('header') %>
+
+    <div class="container">
+        <form action="/add" method="post" class="add-form">
+            <input type="text" name="task" placeholder="Enter your task...">
+            <select name="priority">
+                <option value="high">High</option>
+                <option value="medium" selected>Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <button type="submit">+</button>
+        </form>
+
+        <div class="filter">
+            <label>Filter by Priority:</label>
+            <select onchange="window.location.href = '/?filter=' + this.value;">
+                <option value="all" <%= filter === "all" ? "selected" : "" %>>All</option>
+                <option value="high" <%= filter === "high" ? "selected" : "" %>>High</option>
+                <option value="medium" <%= filter === "medium" ? "selected" : "" %>>Medium</option>
+                <option value="low" <%= filter === "low" ? "selected" : "" %>>Low</option>
+            </select>
+        </div>
+
+        <div class="todo-list">
+            <% todos.forEach((todo, index) => { %>
+                <div class="todo-item">
+                    
+                    <form action="/edit" method="post" class="edit-form">
+                        <input type="hidden" name="index" value="<%= todo._id %>">
+                        <input type="text" name="updatedTask" value="<%= todo.task %>">
+                        <select name="updatedPriority">
+                            <option value="high" <%= todo.priority === "high" ? "selected" : "" %>>High</option>
+                            <option value="medium" <%= todo.priority === "medium" ? "selected" : "" %>>Medium</option>
+                            <option value="low" <%= todo.priority === "low" ? "selected" : "" %>>Low</option>
+                        </select>
+                        <button type="submit"><i class="fa-solid fa-pencil"></i></button>
+                    </form>
+                    <form action="/delete" method="post" class="delete-form">
+                        <input type="hidden" name="index" value="<%= todo._id %>">
+                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                    </form>
+
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+   <%- include('footer') %>
+</body>
+</html>

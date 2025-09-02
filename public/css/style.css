@@ -1,0 +1,163 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #84fab0, #8fd3f4);
+    margin: 0;
+    padding: 0;
+}
+header, footer {
+    background: linear-gradient(135deg, #84fab0, #8fd3f4);
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ====== Add Task Form ====== */
+.add-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.add-form input[type="text"],
+.add-form select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.add-form button {
+    padding: 10px 16px;
+    background: #28a745;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.add-form button:hover {
+    background: #218838;
+}
+
+/* ====== Filter Dropdown ====== */
+.filter {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.filter select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* ====== Todo List ====== */
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* ====== Edit & Delete Forms ====== */
+.edit-form,
+.delete-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.edit-form input[type="text"],
+.edit-form select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.edit-form button,
+.delete-form button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+/* Pencil icon hover */
+.edit-form button{
+    color: #0c5460;
+}
+.delete-form button{
+    color: red;
+}
+.edit-form button:hover {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Trash icon hover */
+.delete-form button:hover {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* ====== Priority Colors ====== */
+select[name="updatedPriority"] option[value="high"],
+select[name="priority"] option[value="high"] {
+    color: red;
+    font-weight: bold;
+}
+select[name="updatedPriority"] option[value="medium"],
+select[name="priority"] option[value="medium"] {
+    color: orange;
+    font-weight: bold;
+}
+select[name="updatedPriority"] option[value="low"],
+select[name="priority"] option[value="low"] {
+    color: green;
+    font-weight: bold;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 600px) {
+    .add-form {
+        flex-direction: column;
+    }
+    .edit-form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .todo-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
