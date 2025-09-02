@@ -7,11 +7,23 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb+srv://harshkumarsonkar55940_db_user:DWTWhvypEpKDwU2H@cluster0.zmsoirj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
-const taskschema = new mongoose.Schema({
-    task:String,
-    priority:String
+const uri = 'mongodb+srv://harshkumarsonkar55940_db_user:DWTWhvypEpKDwU2H@cluster0.zmsoirj.mongodb.net/todolist?retryWrites=true&w=majority&ssl=true';
+
+// Connect to MongoDB
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of hanging
+    ssl: true,
 })
+.then(() => console.log(" MongoDB Atlas Connected Successfully"))
+.catch(err => console.error(" MongoDB Connection Error:", err));
+
+// Schema
+const taskschema = new mongoose.Schema({
+    task: String,
+    priority:String
+});
 const item = mongoose.model('task',taskschema);
 
 
