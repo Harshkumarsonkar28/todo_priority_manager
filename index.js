@@ -28,7 +28,7 @@ app.get("/", async(req, res) => {
     }
      res.render("list", { todos: filteredTodos, filter });
    } catch (error) {
-    console.error(err);
+    console.error(error);
     res.status(500).send("Error fetching tasks");
    }
 
