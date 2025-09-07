@@ -38,7 +38,8 @@ git clone https://github.com/Harshkumarsonkar28/todo_priority_manager.git
 cd todo_priority_manager
 
 # Install dependencies
-npm install
+npm install 
+npm i express ejs body-parser method-override mongoose
 
 # Run the app
 node index.js

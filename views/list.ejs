@@ -36,7 +36,7 @@
             <% todos.forEach((todo, index) => { %>
                 <div class="todo-item">
                     
-                    <form action="/edit" method="post" class="edit-form">
+                    <form action="/todos/<%= todo._id %>?_method=PUT" method="post" class="edit-form">
                         <input type="hidden" name="index" value="<%= todo._id %>">
                         <input type="text" name="updatedTask" value="<%= todo.task %>">
                         <select name="updatedPriority">
@@ -46,7 +46,7 @@
                         </select>
                         <button type="submit"><i class="fa-solid fa-pencil"></i></button>
                     </form>
-                    <form action="/delete" method="post" class="delete-form">
+                    <form action="/todos/<%= todo._id %>?_method=DELETE" method="post" class="delete-form">
                         <input type="hidden" name="index" value="<%= todo._id %>">
                         <button type="submit"><i class="fa-solid fa-trash"></i></button>
                     </form>

@@ -1,8 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 
 const app = express();
+app.use(methodOverride('_method'));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -70,9 +72,9 @@ app.post("/add", async (req, res) => {
 });
 
 // // Edit Todo
-app.post("/edit", async (req, res) => {
+app.put("/todos/:id", async (req, res) => {
 
-     let id = req.body.index;
+     let id = req.params.id;
      let updatedTask = req.body.updatedTask.trim();
     let updatedPriority = req.body.updatedPriority;
 
@@ -92,9 +94,9 @@ app.post("/edit", async (req, res) => {
 
 // // Delete Todo
 
-app.post("/delete", async (req, res) => {
+app.delete("/todos/:id", async (req, res) => {
     try {
-        let id = req.body.index;
+        let id = req.params.id;
         await item.findByIdAndDelete(id);
         return res.send('<script>alert("Task Deleted Successfully"); window.location.href="/";</script>');
     } catch (error) {
@@ -104,5 +106,5 @@ app.post("/delete", async (req, res) => {
 });
 
 app.listen(3001, () => {
-    console.log("Server started on port 3001");
+    console.log("Server started on http://localhost:3001");
 });
