@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
+const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(methodOverride('_method'));
 app.set("view engine", "ejs");
@@ -106,6 +106,6 @@ app.delete("/todos/:id", async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server started on http://localhost:${process.env.PORT}`);
+app.listen(PORT, () => {
+    console.log(`Server started on http://localhost:${PORT}`);
 });
