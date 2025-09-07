@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const app = express();
 app.use(methodOverride('_method'));
@@ -9,7 +10,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-const uri = 'mongodb+srv://harshkumarsonkar55940_db_user:DWTWhvypEpKDwU2H@cluster0.zmsoirj.mongodb.net/todolist?retryWrites=true&w=majority&ssl=true';
+const uri = process.env.MONGO_URI;
 
 // Connect to MongoDB
 mongoose.connect(uri, {
@@ -105,6 +106,6 @@ app.delete("/todos/:id", async (req, res) => {
     }
 });
 
-app.listen(3001, () => {
-    console.log("Server started on http://localhost:3001");
+app.listen(process.env.PORT, () => {
+    console.log(`Server started on http://localhost:${process.env.PORT}`);
 });
