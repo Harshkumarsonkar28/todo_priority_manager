@@ -1,8 +1,10 @@
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
-require('dotenv').config();
+
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(methodOverride('_method'));
